@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Home | {{ school_name }}{% endblock %}
+{% block body_class %}home-page{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy"><span class="eyebrow">WELCOME TO OUR SCHOOL</span><h1>Where young minds<br><em>find their future.</em></h1><p>A caring learning community where curiosity is encouraged, character is nurtured, and every student is supported to grow.</p><div class="hero-actions"><a class="btn btn-light" href="{{ url_for('admissions') }}">Ask about admissions ↗</a><a class="text-link" href="{{ url_for('gallery') }}">View school gallery →</a></div></div>
+  <div class="hero-art"><div class="sun"></div><div class="art-card"><span class="art-icon">✦</span><h3>Learn with purpose.</h3><p>Grow with confidence.</p><div class="art-line"></div><small>KNOWLEDGE · VALUES · FUTURE</small></div><div class="floating f1">📚 Learning</div><div class="floating f2">🌱 Growing</div></div>
+</section>
+<section class="stats-grid">
+  <div class="stat-card"><span class="stat-icon">♧</span><div><strong>{{ student_count }}</strong><span>Students registered</span></div></div>
+  <div class="stat-card"><span class="stat-icon">✳</span><div><strong>{{ staff_count }}</strong><span>Staff members</span></div></div>
+  <div class="stat-card"><span class="stat-icon">▧</span><div><strong>{{ gallery_count }}</strong><span>Gallery photos</span></div></div>
+</section>
+<section class="section-head"><div><span class="eyebrow">SCHOOL COMMUNITY</span><h2>Everything in one place.</h2><p>Quick access to school information and activities.</p></div></section>
+<section class="admission-strip"><div><span class="eyebrow">ADMISSIONS ARE OPEN</span><h2>Let's find the right next step for your child.</h2><p>Send the school office a quick inquiry and we’ll help with the process.</p></div><a class="btn btn-dark" href="{{ url_for('admissions') }}">Make an inquiry →</a></section>
+<div class="feature-grid">
+  <a class="feature-card" href="{{ url_for('students') }}"><span class="feature-icon purple">♧</span><h3>Student details</h3><p>Browse the student directory and find class and admission information.</p><span class="card-arrow">Explore students ↗</span></a>
+  <a class="feature-card" href="{{ url_for('staff_page') }}"><span class="feature-icon orange">✳</span><h3>Staff details</h3><p>Meet our teachers and school team with their roles and contact details.</p><span class="card-arrow">Meet our staff ↗</span></a>
+  <a class="feature-card" href="{{ url_for('gallery') }}"><span class="feature-icon green">▧</span><h3>School gallery</h3><p>See school events, celebrations, learning moments, and activities.</p><span class="card-arrow">View gallery ↗</span></a>
+</div>
+{% if photos %}
+<section class="section-head compact"><div><span class="eyebrow">MEMORIES & MOMENTS</span><h2>From our gallery</h2></div><a class="text-link" href="{{ url_for('gallery') }}">See all photos →</a></section>
+<div class="photo-grid">{% for photo in photos %}<article class="photo-card"><img src="{{ url_for('static', filename='uploads/' + photo.filename) }}" alt="{{ photo.title }}"><div><h3>{{ photo.title }}</h3><small>{{ photo.created_at }}</small></div></article>{% endfor %}</div>
+{% endif %}
+<div class="principal-banner"><div><span class="eyebrow">FOR SCHOOL LEADERSHIP</span><h2>School management, made simpler.</h2><p>Manage student records, staff details, and gallery photos from one secure principal dashboard.</p></div><a class="btn btn-dark" href="{{ url_for('dashboard') if session.get('principal_id') else url_for('login') }}">Open principal portal ↗</a></div>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Principal Login | {{ school_name }}{% endblock %}
+{% block content %}
+<div class="login-layout"><div class="login-intro"><span class="eyebrow">SCHOOL ADMINISTRATION</span><h1>Welcome back,<br><em>Principal.</em></h1><p>Sign in to manage school records, staff information, and gallery updates.</p><div class="login-note">🔒 &nbsp; Principal-only management access</div></div>
+<form class="login-card" method="post"><input type="hidden" name="csrf_token" value="{{ session.get('csrf_token', '') }}"><div class="lock-icon">♙</div><h2>Principal login</h2><p>Enter your school administrator credentials.</p><label>Email address<input type="email" name="email" placeholder="principal@svschool.edu" required autocomplete="username"></label><label>Password<input type="password" name="password" placeholder="Enter password" required autocomplete="current-password"></label><button class="btn btn-dark full" type="submit">Sign in securely →</button><a class="back-link" href="{{ url_for('home') }}">← Back to school website</a></form></div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Admissions | {{ school_name }}{% endblock %}
+{% block content %}
+<div class="admissions-layout">
+  <section class="admissions-intro"><span class="eyebrow">TAKE THE NEXT STEP</span><h1>Begin your child's<br><em>school journey.</em></h1><p>Share a few details and our school office will contact you about admission availability and the next steps.</p><div class="admission-points"><span>✓ A welcoming learning community</span><span>✓ Personal guidance from our office</span><span>✓ Clear information about the process</span></div></section>
+  <form class="admission-card" method="post"><input type="hidden" name="csrf_token" value="{{ session.get('csrf_token', '') }}"><span class="eyebrow">ADMISSION INQUIRY</span><h2>Request a call back</h2><p>Fields marked * are required.</p><div class="form-grid"><label>Parent / guardian name *<input name="parent_name" autocomplete="name" required maxlength="120"></label><label>Student name *<input name="student_name" required maxlength="120"></label><label>Class applying for *<input name="class_applied" placeholder="e.g. Class 5" required maxlength="40"></label><label>Phone number *<input name="phone" type="tel" autocomplete="tel" required maxlength="30"></label><label class="wide">Email address<input name="email" type="email" autocomplete="email" maxlength="160"></label><label class="wide">Message<textarea name="message" rows="4" maxlength="1000" placeholder="Any question for our school office?"></textarea></label><button class="btn btn-dark" type="submit">Send inquiry →</button></div><small class="privacy-copy">Your details are shared with the school office to respond to this inquiry.</small></form>
+</div>
+{% endblock %}
