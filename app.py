@@ -10,8 +10,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = Path(os.environ.get("DATABASE_PATH", BASE_DIR / "school.db"))
-UPLOAD_FOLDER = Path(os.environ.get("UPLOAD_FOLDER", BASE_DIR / "static" / "uploads"))
+DB_PATH = Path(os.environ.get("DATABASE_PATH", Path("/tmp") / "school.db"))
+UPLOAD_FOLDER = Path(os.environ.get("UPLOAD_FOLDER", Path("/tmp") / "uploads"))
 ALLOWED_IMAGES = {"png", "jpg", "jpeg", "gif", "webp"}
 
 app = Flask(__name__)
